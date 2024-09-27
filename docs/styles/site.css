@@ -1,0 +1,73 @@
+.header-main {
+    top: 0;
+    background-color: #161616;
+    border-bottom: 1px solid #393939;
+    position: fixed;
+    height: 48px;
+    left: 0;
+    right: 0;
+}
+
+.left-menu {
+    position: fixed;
+    top: 48px;
+    background-color: #242424;
+    left: 0;
+    width: 240px;
+    color: white;
+    bottom: 28px;
+    border-right: 1px solid #393939;
+}
+
+.status {
+    position: fixed;
+    height: 28px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #393939;
+    background-color: #161616;
+}
+
+.container {
+    position: fixed;
+    left: 240px;
+    right: 0;
+    top: 48px;
+    bottom: 28px;
+    background-color: #303030;
+    overflow: auto;
+}
+
+@property --border-gradient-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0turn;
+}
+
+.border-spin {
+    --outer-radius: 4px;
+    --border-size: 1px;
+    --inner-radius: calc(var(--outer-radius) - var(--border-size));
+    --runtime: #73ED73;
+    background-image: 
+        conic-gradient(from var(--border-gradient-angle) at 50% 50%, 
+                transparent, 
+                var(--runtime) 16%, 
+                transparent 20%);
+    border-radius: var(--outer-radius);
+    background-size: contain;
+    padding: var(--border-size);
+    animation: buttonBorderSpin 2s infinite ease-in-out;
+    max-width: 100%;
+}
+
+@keyframes buttonBorderSpin {
+    0% {
+        --border-gradient-angle: 0turn;
+    }
+
+    100% {
+        --border-gradient-angle: 1turn;
+    }
+}
