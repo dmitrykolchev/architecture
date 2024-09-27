@@ -58,7 +58,7 @@
     border-radius: var(--outer-radius);
     background-size: contain;
     padding: var(--border-size);
-    animation: buttonBorderSpin 2s infinite ease-in-out;
+    animation: buttonBorderSpin 9s infinite linear;
     max-width: 100%;
 }
 
