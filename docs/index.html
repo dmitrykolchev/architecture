@@ -50,6 +50,30 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color:#333;color:white;">
+    <pre><code class="css">
+    .gcontainer {
+        display: grid;
+        width: 1200px;
+        padding: 4px;
+        max-height: 400px;
+        row-gap: 4px;
+        column-gap: 4px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        overflow-y: auto;
+        background-color: green;
+    }
+
+        .gcontainer > div {
+            position: relative;
+            padding: 0;
+            background-color: red;
+            padding: 6pt;
+            color: black;
+            overflow: hidden;
+        }
+
+    </code></pre>
+
 </body>
 </html>
