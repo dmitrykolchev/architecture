@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="spectrum spectrum--dark spectrum--medium spectrum--express">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,13 +9,13 @@
     <script src="./highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 </head>
-<body style="background-color:#242424;color:white;">
-
-    <div class="border-spin" style="width:820px;height:490px;position:relative;">
-        <div style="width:100%;height:100%;background-color:#333;border-radius:var(--outer-radius);overflow:hidden;">
-            <div style="margin:8px;">
-                <h2>Архитектура и проектирование</h2>
-                <pre><code class="css">
+<body >
+    <div class="site">
+        <div class="border-spin" style="width:820px;position:relative;">
+            <div style="width:100%;height:100%;background-color:#202020;border-radius:var(--outer-radius);overflow:hidden;">
+                <div style="margin:8px;">
+                    <h3 class="title3">Архитектура и проектирование</h3>
+                    <pre><code class="css" style="max-height:400px;background-color:#161616">
     .gcontainer {
         display: grid;
         width: 1200px;
@@ -38,16 +38,25 @@
         }
 
     </code></pre>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="border-spin" style="width:820px;height:208px;position:relative;">
+            <div style="width:100%;height:100%;background-color:#202020;border-radius:var(--outer-radius);overflow:hidden;">
+                <div style="margin:8px;">
+                    <h3 class="title3">Принципы SOLID</h3>
+                    <ul>
+                        <li><a href="./refdocs/srp.pdf">Single-responsibility principle (SRP)</a></li>
+                        <li><a href="./refdocs/ocp.pdf">Open-closed principle (OCP)</a></li>
+                        <li><a href="./refdocs/lsp.pdf">Liskov substitution principle (LSP)</a></li>
+                        <li><a href="./refdocs/isp.pdf">Interface segregation principle (ISP)</a></li>
+                        <li><a href="./refdocs/dip.pdf">Dependency inversion principle (DIP)</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <h2>Принципы SOLID</h2>
-    <ul>
-        <li><a href="./refdocs/srp.pdf">Single-responsibility principle (SRP)</a></li>
-        <li><a href="./refdocs/ocp.pdf">Open-closed principle (OCP)</a></li>
-        <li><a href="./refdocs/lsp.pdf">Liskov substitution principle (LSP)</a></li>
-        <li><a href="./refdocs/isp.pdf">Interface segregation principle (ISP)</a></li>
-        <li><a href="./refdocs/dip.pdf">Dependency inversion principle (DIP)</a></li>
-    </ul>
 </body>
 </html>
