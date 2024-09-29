@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="./styles/site.css">
     <script src="./highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <style>
+        @property --gradient-angle {
+            syntax: "<angle>";
+            inherits: false;
+            initial-value: 0turn;
+        }
+
+    </style>
 </head>
 <body >
     <div class="site">
@@ -53,6 +61,46 @@
                 </div>
             </div>
         </div>
+        <br />
+        <div>
+            <template shadowrootmode="open">
+                <style>
+                    .spin {
+                        box-sizing: border-box;
+                        --outer-radius: 10000px;
+                        --border-size: 8px;
+                        --inner-radius: calc(var(--outer-radius) - var(--border-size));
+                        --runtime: var(--color-darkblue-primary);
+                        background-image: conic-gradient(from var(--gradient-angle) at 50% 50%, 
+                            transparent, var(--runtime) 16%, transparent 20%, 
+                            transparent 25%, var(--color-cranberry-primary) 41%, transparent 45%, 
+                            transparent 50%, var(--runtime) 66%, transparent 70%, 
+                            transparent 75%, var(--color-cranberry-primary) 91%, transparent 95%);
+                        border-radius: var(--outer-radius);
+                        background-size: contain;
+                        padding: var(--border-size);
+                        animation: borderSpin 1.5s infinite ease-in-out;
+                        max-width: 100%;
+                    }
+
+                    @keyframes borderSpin {
+                        0% {
+                            --gradient-angle: 0turn;
+                        }
+
+                        100% {
+                            --gradient-angle: 1turn;
+                        }
+                    }
+                </style>
+                <div class="spin" style="width:280px;height:280px;position:relative;">
+                    <div style="width:100%;height:100%;background-color:var(--default-background-color);border-radius:var(--outer-radius);display:flex;align-content:center;align-items:center;justify-content:center;">
+                        <h1 class="title1" style="font-weight:var(--typography-font-weight-ultra-light)">Hello World!</h1>
+                    </div>
+                </div>
+            </template>
+        </div>
     </div>
+
 </body>
 </html>
