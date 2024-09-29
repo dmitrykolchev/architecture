@@ -1,123 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap');
-
-/*body {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
-}
-*/
-
-:root {
-    --font-scale-n: 1;
-    --font-scale-m: 1.1;
-    --font-scale-l: 1.2;
-    --font-scale-xl: 1.3;
-    --font-scale-xxl: 1.4;
-
-    --default-font-scale: var(--font-scale-m);
-
-    --font-size68: calc(68px * var(--default-font-scale));
-    --font-size40: calc(40px * var(--default-font-scale));
-    --font-size32: calc(32px * var(--default-font-scale));
-    --font-size28: calc(28px * var(--default-font-scale));
-    --font-size24: calc(24px * var(--default-font-scale));
-    --font-size20: calc(20px * var(--default-font-scale));
-    --font-size16: calc(16px * var(--default-font-scale));
-    --font-size14: calc(14px * var(--default-font-scale));
-    --font-size12: calc(12px * var(--default-font-scale));
-    --font-size10: calc(10px * var(--default-font-scale));
-
-    --line-height92: calc(92px * var(--default-font-scale));
-    --line-height52: calc(52px * var(--default-font-scale));
-    --line-height40: calc(40px * var(--default-font-scale));
-    --line-height36: calc(36px * var(--default-font-scale));
-    --line-height32: calc(32px * var(--default-font-scale));
-    --line-height26: calc(26px * var(--default-font-scale));
-    --line-height22: calc(22px * var(--default-font-scale));
-    --line-height20: calc(20px * var(--default-font-scale));
-    --line-height16: calc(16px * var(--default-font-scale));
-    --line-height14: calc(14px * var(--default-font-scale));
-}
+@import "border.css";
+@import "colors.css";
+@import "curves.css";
+@import "spacing.css";
+@import "status-colors.css";
+@import "typography.css";
 
 :root {
-    --default-font-family: "Roboto";
-    --color-blue: #0078D4;
-    --color-blue-tint10: #0090FF;
-    --color-blue-tint20: #55B5FF;
-    --color-royal-blue: #004E8C;
-    --color-teal: #038387;
-
     --default-background-color: #161616;
     --default-text-color: white;
     --link-color: var(--color-blue-tint20);
     --link-color-hover: var(--color-blue);
-    
-    --font-weight-regular: 400;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 900;
-
-    --typography-display-font-weight: var(--font-weight-semibold);
-    --typography-display-font-size: var(--font-size68);
-    --typography-display-line-height: var(--line-height92);
-
-    --typography-large-title-font-weight: var(--font-weight-semibold);
-    --typography-large-title-font-size: var(--font-size40);
-    --typography-large-title-line-height: var(--line-height52);
-
-    --typography-title1-font-weight: var(--font-weight-semibold);
-    --typography-title1-font-size: var(--font-size32);
-    --typography-title1-line-height: var(--line-height40);
-
-    --typography-title2-font-weight: var(--font-weight-semibold);
-    --typography-title2-font-size: var(--font-size28);
-    --typography-title2-line-height: var(--line-height36);
-
-    --typography-title3-font-weight: var(--font-weight-semibold);
-    --typography-title3-font-size: var(--font-size24);
-    --typography-title3-line-height: var(--line-height32);
-
-    --typography-subtitle1-font-weight: var(--font-weight-semibold);
-    --typography-subtitle1-font-size: var(--font-size20);
-    --typography-subtitle1-line-height: var(--line-height26);
-
-    --typography-subtitle2-stronger-font-weight: var(--font-weight-bold);
-    --typography-subtitle2-stronger-font-size: var(--font-size16);
-    --typography-subtitle2-stronger-line-height: var(--line-height22);
-
-    --typography-subtitle2-font-weight: var(--font-weight-semibold);
-    --typography-subtitle2-font-size: var(--font-size16);
-    --typography-subtitle2-line-height: var(--line-height22);
-
-    --typography-body1-stronger-font-weight: var(--font-weight-bold);
-    --typography-body1-stronger-font-size: var(--font-size14);
-    --typography-body1-stronger-line-height: var(--line-height20);
-
-    --typography-body1-strong-font-weight: var(--font-weight-semibold);
-    --typography-body1-strong-font-size: var(--font-size14);
-    --typography-body1-strong-line-height: var(--line-height20);
-
-    --typography-body1-font-weight: var(--font-weight-regular);
-    --typography-body1-font-size: var(--font-size14);
-    --typography-body1-line-height: var(--line-height20);
-
-    --typography-caption1-stronger-font-weight: var(--font-weight-bold);
-    --typography-caption1-stronger-font-size: var(--font-size12);
-    --typography-caption1-stronger-line-height: var(--line-height16);
-
-    --typography-caption1-strong-font-weight: var(--font-weight-semibold);
-    --typography-caption1-strong-font-size: var(--font-size12);
-    --typography-caption1-strong-line-height: var(--line-height16);
-
-    --typography-caption1-font-weight: var(--font-weight-regular);
-    --typography-caption1-font-size: var(--font-size12);
-    --typography-caption1-line-height: var(--line-height16);
-
-    --typography-caption2-strong-font-weight: var(--font-weight-semibold);
-    --typography-caption2-strong-font-size: var(--font-size10);
-    --typography-caption2-strong-line-height: var(--line-height14);
-
-    --typography-caption2-font-weight: var(--font-weight-regular);
-    --typography-caption2-font-size: var(--font-size10);
-    --typography-caption2-line-height: var(--line-height14);
 }
 
 html, body {
@@ -226,6 +118,10 @@ h1,h2,h3,h4,h5,h6 {
     margin-block-end: 0.8em;
     margin-inline-start: 0;
     margin-inline-end: 0;
+}
+
+code  {
+    font-family: var(--font-family-monospace);
 }
 
 a, a:visited {
