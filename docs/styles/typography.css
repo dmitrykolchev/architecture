@@ -88,7 +88,7 @@
     --typography-subtitle2-font-size: var(--font-size400);
     --typography-subtitle2-line-height: var(--line-height400);
 
-    --typography-body1-font-family: var(--font-family-base);
+    --typography-body1-stronger-font-family: var(--font-family-base);
     --typography-body1-stronger-font-weight: var(--font-weight-bold);
     --typography-body1-stronger-font-size: var(--font-size300);
     --typography-body1-stronger-line-height: var(--line-height300);
@@ -97,6 +97,11 @@
     --typography-body1-strong-font-weight: var(--font-weight-semibold);
     --typography-body1-strong-font-size: var(--font-size300);
     --typography-body1-strong-line-height: var(--line-height300);
+
+    --typography-body1-font-family: var(--font-family-base);
+    --typography-body1-font-weight: var(--font-weight-regular);
+    --typography-body1-font-size: var(--font-size300);
+    --typography-body1-line-height: var(--line-height300);
 
     --typography-body2-font-family: var(--font-family-base);
     --typography-body2-font-weight: var(--font-weight-regular);

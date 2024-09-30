@@ -1,0 +1,7 @@
+
+:root {
+    --default-background-color: var(--color-grey4);
+    --default-foreground-color: var(--theme-foreground-color);
+    --link-foreground-color: var(--color-blue-tint20);
+    --link-foreground-color-hover: var(--color-blue-primary);
+}
