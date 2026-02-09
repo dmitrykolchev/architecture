@@ -22,31 +22,27 @@ cat << 'EOF' > /jffs/scripts/firewall-start
 
 # Список подсетей для блокировки
 # 2a02:6b8::/32 - Весь Яндекс
-# 2a02:6b8:23::/48 - Входит в первую, но добавим для надежности
 
 NET1="2a02:6b8::/32"
 
 # 1. Очистка старых правил (чтобы не дублировались при перезапуске фаервола)
 # Скрываем ошибки (2> /dev/null), если правил еще нет
 ip6tables -D FORWARD -d $NET1 -j REJECT 2> /dev/null
-ip6tables -D FORWARD -d $NET2 -j REJECT 2> /dev/null
 ip6tables -D OUTPUT -d $NET1 -j REJECT 2> /dev/null
-ip6tables -D OUTPUT -d $NET2 -j REJECT 2> /dev/null
 
 # 2. Блокировка для устройств локальной сети (LAN -> WAN)
 # Используем -I (Insert), чтобы правила встали в самый верх
 ip6tables -I FORWARD -d $NET1 -j REJECT
-ip6tables -I FORWARD -d $NET2 -j REJECT
 
 # 3. Блокировка для самого роутера (Router -> WAN)
 ip6tables -I OUTPUT -d $NET1 -j REJECT
-ip6tables -I OUTPUT -d $NET2 -j REJECT
 
 EOF
 ```
 
 ### Шаг 3. Установка прав и запуск
-Теперь нужно сделать файл исполняемым и запустить его вручную, чтобы применить правила прямо сейчас без перезагрузки роутера.
+Теперь нужно сделать файл исполняемым и запустить его вручную, чтобы 
+применить правила прямо сейчас без перезагрузки роутера.
 
 ```bash
 chmod a+rx /jffs/scripts/firewall-start
