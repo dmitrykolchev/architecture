@@ -45,3 +45,28 @@ docker run -d \
   --kv-cache-dtype fp8
 
 ```
+to view log
+```
+docker logs -f vllm-server
+```
+
+wait for
+```
+INFO 02-09 15:19:00 [api_server.py:946] Starting vLLM API server 0 on http://0.0.0.0:8000
+```
+
+now you can run to test vLLM
+
+```
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer secret-token-123" \
+  -d '{
+    "model": "Qwen/Qwen2.5-Coder-7B-Instruct-GPTQ-Int4",
+    "messages": [
+      {"role": "system", "content": "Ты дружелюбный помощник."},
+      {"role": "user", "content": "Как ты думаешь, что лучше использовать для обучения модели с нуля -  компьютер с RTX PRO 6000 Workstation 96GB vRAM или Mac Studio M3 Ultra c 512GB RAM?"}
+    ],
+    "temperature": 0
+  }'
+```
