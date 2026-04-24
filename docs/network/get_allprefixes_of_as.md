@@ -118,4 +118,22 @@ C:\Windows\System32> route add 195.34.20.0 MASK 255.255.254.0 192.168.1.1 IF 2
 New-NetRoute -DestinationPrefix "195.34.20.0/23" -InterfaceIndex 2 -NextHop 192.168.1.1
 ```
 
+Кстати, список префиксов можно скинуть ИИ-шке и попросить написать скрипт на вашем любимом языке
 
+На `powershell` получится что-то типа:
+
+```
+$gw = "192.168.1.1"
+$ifIndex = (Get-NetIPAddress -IPAddress "192.168.1.2").InterfaceIndex
+
+$subnets = @(
+    "195.34.20.0/23", "185.73.193.0/24", "185.73.192.0/24", "185.73.195.0/24", "91.212.64.0/24",
+    "46.226.122.0/24", "185.73.194.0/24", "185.73.192.0/22", "91.223.93.0/24"
+)
+
+foreach ($subnet in $subnets) {
+    New-NetRoute -DestinationPrefix $subnet -InterfaceIndex $ifIndex -NextHop $gw -RouteMetric 1 -ErrorAction SilentlyContinue
+}
+```
+
+Нужно лишь правильно указать адрес маршрутизатора (в скрипте переменная `192.168.1.1`) и адрес сетевого интерфейса конмпьютера (в скрипте `192.168.1.2`)
