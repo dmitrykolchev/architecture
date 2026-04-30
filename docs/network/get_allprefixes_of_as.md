@@ -174,7 +174,7 @@ function Add-NetRoutes {
         [string[]]$ipv4
     )
     foreach ($subnet in ($ipv4 | Sort-Object)) {
-        New-NetRoute -DestinationPrefix $subnet -InterfaceIndex $ifIndex -NextHop $gw -RouteMetric 1 -ErrorAction SilentlyContinue
+        New-NetRoute -DestinationPrefix $subnet -InterfaceIndex $ifIndex -NextHop $gateway -RouteMetric 1 -ErrorAction SilentlyContinue
         #Write-Host "route add $subnet GW: $gateway IF: $ifIndex"
     }
 }
