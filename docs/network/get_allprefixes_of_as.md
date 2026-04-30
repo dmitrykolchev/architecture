@@ -137,3 +137,79 @@ foreach ($subnet in $subnets) {
 ```
 
 Нужно лишь правильно указать адрес маршрутизатора (в скрипте переменная `192.168.1.1`) и адрес сетевого интерфейса конмпьютера (в скрипте `192.168.1.2`)
+
+Можно использовать готовый скрипт, который сделает все самостоятельно
+
+``` powershell
+#requires -RunAsAdministrator
+
+param (
+    [string]$hostName,
+    $gateway = "192.168.1.1",
+    $interface = "192.168.1.2"
+)
+
+$ifIndex = (Get-NetIPAddress -IPAddress $interface).InterfaceIndex
+
+function Get-AsnPrefixes {
+    param([string]$asn)
+
+    # Получаем общий список
+    $allPrefixes = (Invoke-RestMethod -Uri "https://stat.ripe.net/data/announced-prefixes/data.json?resource=$asn").data.prefixes.prefix
+
+    # Разделяем на два массива
+    $ipv4 = $allPrefixes.Where({ [System.Net.IPAddress]::Parse($_.Split('/')[0]).AddressFamily -eq 'InterNetwork' })
+    #$ipv6 = $allPrefixes.Where({ [System.Net.IPAddress]::Parse($_.Split('/')[0]).AddressFamily -eq 'InterNetworkV6' })
+
+    # Проверка результата
+    Write-Host "IPv4 prefixes count for $($asn): $($ipv4.Count)"
+    #Write-Host "IPv6 count: $($ipv6.Count)"
+
+    $ipv4
+}
+
+function Add-NetRoutes {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string[]]$ipv4
+    )
+    foreach ($subnet in ($ipv4 | Sort-Object)) {
+        New-NetRoute -DestinationPrefix $subnet -InterfaceIndex $ifIndex -NextHop $gw -RouteMetric 1 -ErrorAction SilentlyContinue
+        #Write-Host "route add $subnet GW: $gateway IF: $ifIndex"
+    }
+}
+
+$ip = (Resolve-DnsName -Name $hostName -Type A)[0].IPAddress
+
+Write-Host "Host name: $hostName"
+Write-Host "Address: $ip"
+
+$query = "$($ip.Split('.')[-1..-4] -join '.').origin.asn.cymru.com"
+$asns = (Resolve-DnsName $query -Type TXT).Strings.Split('|')[0].Trim().Split(' ')
+
+$result = @()
+$index = 0
+foreach($asn in $asns)
+{
+    Write-Host "ASN[$index]: $asn"
+    $result = ($result + (Get-AsnPrefixes $asn)) | Select-Object -Unique
+    $index++
+}
+
+#Write-Host ($result | Sort-Object)
+Write-Host "Totals IPv4 count: $($result.Count)"
+
+Add-NetRoutes $result
+```
+
+Для запуска скрипта необходимо запустить Terminal от имени Администратора и выполнить команду
+
+``` powershell
+.\New-RoutesForHostNet.ps1 -hostName kinopoisk.ru -gateway 192.168.1.1 -interface 192.168.1.2
+```
+
+Важно! Правильно укажите параметр `-gateway` и `-interface`. По имени хоста `kinopoisk.ru` скрип сначала найдет IP адрес, 
+по IP адресу определит идентификатры автономных систем (ASN) и уже по ASN определит анонсируемые префиксы (подсети), которые 
+в конечном итоге и будут добавлены в таблицу маршрутов (routing table).
+
+Проверить результат можно распечатав таблицу маршрутов `route print`
